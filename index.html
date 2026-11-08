@@ -1663,6 +1663,7 @@
         */
         const CONFIG = {
             ORDER_LINK: "https://app.youform.com/forms/avvoba0x", // <-- PASTE YOUR ORDER LINK HERE
+			WHATSAPP_LINK: "https://wa.me/qr/GSWKF7WEW75SI1?text=Hi!%20I'd%20like%20to%20know%20more%20about%20your%20lip%20glosses.",
             INSTAGRAM_LINK: "https://www.instagram.com/theloveproject.lb/?utm_source=ig_web_button_share_sheet", // <-- PASTE INSTAGRAM LINK HERE
             CONTACT_EMAIL: "theloveprojectbym@hotmail.com" // <-- YOUR EMAIL HERE
         };
@@ -2016,65 +2017,6 @@
     <!-- ==========================================
        TESTIMONIALS SECTION
        ========================================== -->
-    <section class="section-padding testimonials-section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-subtitle">Testimonials</span>
-                <h2 class="section-title">Sweet Words, Sweet Love</h2>
-                <p class="section-desc">What our wonderful customers are saying about our glosses and our meaningful mission.</p>
-            </div>
-
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div>
-                        <div class="testimonial-stars">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
-                        <p class="testimonial-text">"Pink Dream Gloss is absolute perfection! Not sticky at all, smells gorgeous, and knowing my purchase feeds street cats makes me love it even more."</p>
-                    </div>
-                    <div class="testimonial-author">
-                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80" alt="Sarah L." class="author-avatar">
-                        <div class="author-info">
-                            <h4>Sarah L.</h4>
-                            <p>Verified Customer</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="testimonial-card">
-                    <div>
-                        <div class="testimonial-stars">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
-                        <p class="testimonial-text">"Velvet Rose has become my daily go-to shade. The quality rivals high-end luxury brands, and the animal rescue mission is so inspiring."</p>
-                    </div>
-                    <div class="testimonial-author">
-                        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=120&q=80" alt="Chloe M." class="author-avatar">
-                        <div class="author-info">
-                            <h4>Chloe M.</h4>
-                            <p>Verified Customer</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="testimonial-card">
-                    <div>
-                        <div class="testimonial-stars">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
-                        <p class="testimonial-text">"Such a gorgeous initiative! The glosses give you the prettiest mirror shine and glass-like lips. I ordered the duo set and I'm obsessed."</p>
-                    </div>
-                    <div class="testimonial-author">
-                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="Nour K." class="author-avatar">
-                        <div class="author-info">
-                            <h4>Nour K.</h4>
-                            <p>Verified Customer</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- ==========================================
        FAQ SECTION
@@ -2104,7 +2046,7 @@
                         <i class="fas fa-chevron-down"></i>
                     </button>
                     <div class="faq-answer">
-                        <p>Every single penny of profit goes directly towards purchasing nutritious food, medical supplies, veterinary care, and safe shelters for stray cats around universities and streets, as well as supporting our rescue animals at home.</p>
+                        <p>Every single penny of profit goes directly towards purchasing nutritious food, medical supplies, veterinary care, and safe shelters for stray animals around universities and streets, as well as supporting our rescue animals at home.</p>
                     </div>
                 </div>
 
@@ -2158,6 +2100,9 @@
                     <a href="#" id="contact-email-btn" class="btn btn-outline">
                         <i class="fas fa-envelope"></i> Send an Email
                     </a>
+					<a href="#" id="contact-wa-btn" class="btn btn-outline" target="_blank">
+						<i class="fab fa-whatsapp"></i> Chat on WhatsApp
+					</a>
                 </div>
             </div>
         </div>
@@ -2175,6 +2120,7 @@
                     <div class="footer-socials">
                         <a href="#" id="footer-ig-link" class="footer-social-btn" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                         <a href="#" id="footer-email-link" class="footer-social-btn" aria-label="Email"><i class="fas fa-envelope"></i></a>
+						<a href="#" id="footer-wa-link" class="footer-social-btn" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
 
@@ -2309,6 +2255,8 @@
             // Set dynamic links from CONFIG
             document.getElementById('contact-ig-btn').href = CONFIG.INSTAGRAM_LINK;
             document.getElementById('footer-ig-link').href = CONFIG.INSTAGRAM_LINK;
+			document.getElementById('contact-wa-btn').href = CONFIG.WHATSAPP_LINK;
+			document.getElementById('footer-wa-link').href = CONFIG.WHATSAPP_LINK;
             document.getElementById('contact-email-btn').href = `mailto:${CONFIG.CONTACT_EMAIL}`;
             document.getElementById('footer-email-link').href = `mailto:${CONFIG.CONTACT_EMAIL}`;
         });
