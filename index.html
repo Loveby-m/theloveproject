@@ -1,0 +1,2588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Love Project — Beauty with a Purpose</title>
+    <meta name="description" content="Discover premium lip glosses and beauty products where 100% of profits are donated to help and care for animals in need.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ==========================================
+           CSS RESET & DESIGN TOKENS
+           ========================================== */
+        :root {
+            --baby-pink: #FCE4EC;
+            --soft-blush: #F8BBD0;
+            --pastel-pink: #FFF0F5;
+            --rose-pink: #E8A1B2;
+            --deep-rose: #C65F83;
+            --rose-dark: #A3476B;
+            --white: #FFFFFF;
+            --dark-text: #393039;
+            --muted-text: #7A6C7A;
+            --bg-light: #FFFAFC;
+            --card-bg: #FFFFFF;
+            --border-color: #F3D3DF;
+            --shadow-subtle: 0 10px 30px rgba(198, 95, 131, 0.08);
+            --shadow-hover: 0 20px 40px rgba(198, 95, 131, 0.15);
+            --transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-sans: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--dark-text);
+            background-color: var(--bg-light);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        ::selection {
+            background-color: var(--soft-blush);
+            color: var(--dark-text);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-serif);
+            font-weight: 600;
+            color: var(--dark-text);
+            line-height: 1.25;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        button, input, select, textarea {
+            font-family: inherit;
+            border: none;
+            outline: none;
+            background: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* ==========================================
+           UTILITY & ANIMATION CLASSES
+           ========================================== */
+        .section-padding {
+            padding: 7rem 0;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .section-header {
+            max-width: 700px;
+            margin: 0 auto 4rem auto;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--deep-rose);
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+
+        .section-title {
+            font-size: clamp(2.2rem, 4vw, 3.2rem);
+            margin-bottom: 1rem;
+        }
+
+        .section-desc {
+            color: var(--muted-text);
+            font-size: 1.05rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 1rem 2.2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .btn-primary {
+            background-color: var(--deep-rose);
+            color: var(--white);
+            box-shadow: 0 8px 25px rgba(198, 95, 131, 0.3);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--rose-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(198, 95, 131, 0.4);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--dark-text);
+            border: 1.5px solid var(--rose-pink);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--baby-pink);
+            border-color: var(--deep-rose);
+            transform: translateY(-3px);
+        }
+
+        /* ==========================================
+           NAVIGATION HEADER
+           ========================================== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(255, 250, 252, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 90px;
+        }
+
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-img {
+            height: 48px;
+            width: 48px;
+            object-fit: contain;
+            border-radius: 50%;
+            border: 1px solid var(--rose-pink);
+            background: var(--white);
+            padding: 2px;
+        }
+
+        .logo-text-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-name {
+            font-family: var(--font-serif);
+            font-size: 1.35rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            color: var(--dark-text);
+        }
+
+        .brand-tagline-mini {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--deep-rose);
+            font-weight: 600;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+        }
+
+        .nav-link {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--dark-text);
+            position: relative;
+            padding: 0.25rem 0;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--deep-rose);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+        }
+
+        .action-icon-btn {
+            position: relative;
+            background: var(--pastel-pink);
+            border: 1px solid var(--border-color);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--deep-rose);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .action-icon-btn:hover {
+            background: var(--deep-rose);
+            color: var(--white);
+            transform: scale(1.05);
+        }
+
+        .badge-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: var(--deep-rose);
+            color: var(--white);
+            font-size: 0.7rem;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            border: 2px solid var(--white);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark-text);
+        }
+
+        /* ==========================================
+           HERO SECTION
+           ========================================== */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 90px;
+            background: linear-gradient(135deg, var(--pastel-pink) 0%, var(--baby-pink) 50%, #FFF5F8 100%);
+            overflow: hidden;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content {
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid var(--rose-pink);
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--deep-rose);
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(5px);
+        }
+
+        .hero-title {
+            font-size: clamp(2.8rem, 5.5vw, 4.8rem);
+            font-weight: 700;
+            margin-bottom: 1.2rem;
+            color: var(--dark-text);
+            letter-spacing: -0.01em;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--deep-rose);
+            margin-bottom: 1.2rem;
+        }
+
+        .hero-desc {
+            font-size: 1.05rem;
+            color: var(--muted-text);
+            margin-bottom: 2.5rem;
+            max-width: 540px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-image-container {
+            position: relative;
+            width: 100%;
+            height: 520px;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: var(--shadow-hover);
+            border: 4px solid var(--white);
+        }
+
+        .hero-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .hero-image-container:hover img {
+            transform: scale(1.03);
+        }
+
+        .hero-floating-card {
+            position: absolute;
+            bottom: -30px;
+            left: -30px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-hover);
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            z-index: 3;
+            max-width: 260px;
+        }
+
+        .floating-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--baby-pink);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--deep-rose);
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        .floating-text h4 {
+            font-size: 0.95rem;
+            margin-bottom: 0.15rem;
+        }
+
+        .floating-text p {
+            font-size: 0.8rem;
+            color: var(--muted-text);
+        }
+
+        /* Decorative background blobs */
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            z-index: 1;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+        .blob-1 {
+            width: 400px;
+            height: 400px;
+            background: var(--soft-blush);
+            top: -100px;
+            right: -100px;
+        }
+        .blob-2 {
+            width: 350px;
+            height: 350px;
+            background: var(--baby-pink);
+            bottom: -50px;
+            left: -100px;
+        }
+
+        /* ==========================================
+           MISSION HIGHLIGHT BANNER
+           ========================================== */
+        .mission-ticker {
+            background-color: var(--deep-rose);
+            color: var(--white);
+            padding: 1.2rem 0;
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+        }
+
+        .ticker-content {
+            display: inline-block;
+            animation: ticker 25s linear infinite;
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .ticker-content span {
+            margin: 0 2rem;
+        }
+
+        .ticker-content i {
+            margin-right: 0.5rem;
+        }
+
+        @keyframes ticker {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); }
+        }
+
+        /* ==========================================
+           SHOP SECTION & PRODUCTS
+           ========================================== */
+        .shop-section {
+            background-color: var(--white);
+            position: relative;
+        }
+
+        .shop-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        @media (min-width: 768px) {
+            .shop-controls {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+            }
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            background: var(--pastel-pink);
+            color: var(--dark-text);
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--deep-rose);
+            color: var(--white);
+            border-color: var(--deep-rose);
+        }
+
+        .search-sort-wrapper {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            position: relative;
+            min-width: 240px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.75rem;
+            border-radius: 50px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-light);
+            font-size: 0.9rem;
+            color: var(--dark-text);
+            transition: var(--transition);
+        }
+
+        .search-box input:focus {
+            border-color: var(--deep-rose);
+            background: var(--white);
+            box-shadow: 0 0 0 3px rgba(198, 95, 131, 0.1);
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 1.1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--muted-text);
+        }
+
+        .sort-select {
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-light);
+            font-size: 0.9rem;
+            color: var(--dark-text);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .sort-select:focus {
+            border-color: var(--deep-rose);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .product-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-subtle);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .product-image-wrap {
+            position: relative;
+            width: 100%;
+            height: 320px;
+            overflow: hidden;
+            background: var(--pastel-pink);
+            cursor: pointer;
+        }
+
+        .product-image-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .product-card:hover .product-image-wrap img {
+            transform: scale(1.06);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--deep-rose);
+            color: var(--white);
+            padding: 0.35rem 0.9rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            z-index: 2;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .wishlist-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 38px;
+            height: 38px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--muted-text);
+            cursor: pointer;
+            border: none;
+            z-index: 2;
+            transition: var(--transition);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        }
+
+        .wishlist-btn:hover,
+        .wishlist-btn.active {
+            color: #E53935;
+            background: var(--white);
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 1.75rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-category {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--deep-rose);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-title {
+            font-size: 1.35rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+        }
+
+        .product-title:hover {
+            color: var(--deep-rose);
+        }
+
+        .product-desc {
+            font-size: 0.9rem;
+            color: var(--muted-text);
+            margin-bottom: 1.25rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            flex-grow: 1;
+        }
+
+        .product-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: auto;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .product-price {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--dark-text);
+        }
+
+        .product-action-btns {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-icon-sm {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--pastel-pink);
+            color: var(--deep-rose);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-icon-sm:hover {
+            background: var(--deep-rose);
+            color: var(--white);
+            transform: scale(1.05);
+        }
+
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 5rem 2rem;
+            background: var(--bg-light);
+            border-radius: 20px;
+            border: 2px dashed var(--border-color);
+        }
+
+        .no-results i {
+            font-size: 3rem;
+            color: var(--rose-pink);
+            margin-bottom: 1rem;
+        }
+
+        .no-results h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .no-results p {
+            color: var(--muted-text);
+        }
+
+        /* ==========================================
+           OUR MISSION SECTION
+           ========================================== */
+        .mission-section {
+            background: linear-gradient(180deg, var(--white) 0%, var(--pastel-pink) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mission-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        @media (max-width: 992px) {
+            .mission-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+        }
+
+        .mission-text-content h2 {
+            font-size: clamp(2.2rem, 4vw, 3rem);
+            margin-bottom: 1.5rem;
+        }
+
+        .mission-text-content p {
+            color: var(--muted-text);
+            margin-bottom: 1.25rem;
+            font-size: 1.05rem;
+        }
+
+        .mission-quote {
+            background: var(--white);
+            border-left: 4px solid var(--deep-rose);
+            padding: 1.5rem;
+            border-radius: 0 16px 16px 0;
+            margin: 2rem 0;
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--dark-text);
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .mission-gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .mission-img-card {
+            border-radius: 20px;
+            overflow: hidden;
+            height: 240px;
+            box-shadow: var(--shadow-subtle);
+            border: 3px solid var(--white);
+            position: relative;
+        }
+
+        .mission-img-card:nth-child(2) {
+            transform: translateY(25px);
+        }
+
+        .mission-img-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .mission-img-card:hover img {
+            transform: scale(1.05);
+        }
+
+        /* ==========================================
+           ANIMAL LOVE & GALLERY SECTION
+           ========================================== */
+        .animals-section {
+            background-color: var(--white);
+        }
+
+        .animals-intro {
+            max-width: 650px;
+            margin: 0 auto 3.5rem auto;
+            text-align: center;
+        }
+
+        .animal-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            height: 340px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-subtle);
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(57, 48, 57, 0.85) 0%, rgba(57, 48, 57, 0.1) 60%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2rem;
+            color: var(--white);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay h4 {
+            font-size: 1.3rem;
+            color: var(--white);
+            margin-bottom: 0.25rem;
+        }
+
+        .gallery-overlay p {
+            font-size: 0.9rem;
+            color: var(--baby-pink);
+        }
+
+        .gallery-overlay .zoom-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: var(--white);
+        }
+
+        /* ==========================================
+           HOW IT WORKS SECTION
+           ========================================== */
+        .steps-section {
+            background: linear-gradient(135deg, var(--bg-light) 0%, var(--pastel-pink) 100%);
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            position: relative;
+        }
+
+        .step-card {
+            background: var(--white);
+            padding: 3rem 2.5rem;
+            border-radius: 24px;
+            box-shadow: var(--shadow-subtle);
+            border: 1px solid var(--border-color);
+            position: relative;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .step-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .step-number {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--rose-pink);
+            line-height: 1;
+            margin-bottom: 1rem;
+            opacity: 0.6;
+        }
+
+        .step-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--baby-pink);
+            color: var(--deep-rose);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            margin: 0 auto 1.5rem auto;
+        }
+
+        .step-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .step-card p {
+            color: var(--muted-text);
+            font-size: 0.95rem;
+        }
+
+        /* ==========================================
+           TESTIMONIALS SECTION
+           ========================================== */
+        .testimonials-section {
+            background-color: var(--white);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .testimonial-card {
+            background: var(--bg-light);
+            border: 1px solid var(--border-color);
+            padding: 2.5rem;
+            border-radius: 24px;
+            box-shadow: var(--shadow-subtle);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .testimonial-stars {
+            color: #FFB300;
+            font-size: 0.9rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .testimonial-text {
+            font-family: var(--font-serif);
+            font-size: 1.15rem;
+            font-style: italic;
+            color: var(--dark-text);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-top: 1px solid var(--border-color);
+            padding-top: 1.25rem;
+        }
+
+        .author-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--rose-pink);
+        }
+
+        .author-info h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.1rem;
+        }
+
+        .author-info p {
+            font-size: 0.8rem;
+            color: var(--deep-rose);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* ==========================================
+           FAQ ACCORDION SECTION
+           ========================================== */
+        .faq-section {
+            background-color: var(--pastel-pink);
+        }
+
+        .faq-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .faq-item {
+            background: var(--white);
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            box-shadow: var(--shadow-subtle);
+            transition: var(--transition);
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-family: var(--font-serif);
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--dark-text);
+            cursor: pointer;
+            text-align: left;
+            background: none;
+        }
+
+        .faq-question i {
+            color: var(--deep-rose);
+            font-size: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            padding: 0 2rem;
+            color: var(--muted-text);
+            font-size: 1rem;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+            padding-bottom: 1.5rem;
+        }
+
+        /* ==========================================
+           CONTACT & SOCIAL SECTION
+           ========================================== */
+        .contact-section {
+            background: var(--white);
+            text-align: center;
+        }
+
+        .contact-card-box {
+            max-width: 750px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, var(--pastel-pink) 0%, var(--baby-pink) 100%);
+            padding: 4rem 3rem;
+            border-radius: 30px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .contact-card-box h2 {
+            font-size: clamp(2rem, 3.5vw, 2.8rem);
+            margin-bottom: 1rem;
+        }
+
+        .contact-card-box p {
+            color: var(--muted-text);
+            font-size: 1.05rem;
+            margin-bottom: 2.5rem;
+            max-width: 550px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* ==========================================
+           FOOTER
+           ========================================== */
+        .footer {
+            background-color: var(--dark-text);
+            color: var(--white);
+            padding: 5rem 0 2rem 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        @media (max-width: 992px) {
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 2.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .footer-col h3 {
+            color: var(--white);
+            font-size: 1.3rem;
+            margin-bottom: 1.25rem;
+            font-family: var(--font-serif);
+        }
+
+        .footer-col p {
+            color: #C5BAC5;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .footer-links a {
+            color: #C5BAC5;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--soft-blush);
+            padding-left: 5px;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .footer-social-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-social-btn:hover {
+            background: var(--deep-rose);
+            border-color: var(--deep-rose);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .footer-bottom {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+        }
+
+        .footer-bottom p {
+            color: #9A8D9A;
+            font-size: 0.85rem;
+        }
+
+        .footer-closing {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--soft-blush);
+            font-size: 1.05rem;
+        }
+
+        /* ==========================================
+           MODALS & LIGHTBOX & TOAST NOTIFICATIONS
+           ========================================== */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(57, 48, 57, 0.6);
+            backdrop-filter: blur(6px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-container {
+            background: var(--white);
+            width: 100%;
+            max-width: 900px;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.25);
+            position: relative;
+            transform: scale(0.95) translateY(20px);
+            transition: var(--transition);
+        }
+
+        .modal-overlay.active .modal-container {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 44px;
+            height: 44px;
+            background: var(--bg-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark-text);
+            cursor: pointer;
+            z-index: 10;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .modal-close:hover {
+            background: var(--deep-rose);
+            color: var(--white);
+        }
+
+        .modal-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+
+        @media (max-width: 768px) {
+            .modal-body {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .modal-img-col {
+            background: var(--pastel-pink);
+            height: 100%;
+            min-height: 350px;
+            position: relative;
+        }
+
+        .modal-img-col img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-content-col {
+            padding: 3rem 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .modal-category {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--deep-rose);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-title {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .modal-price {
+            font-family: var(--font-serif);
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--dark-text);
+            margin-bottom: 1.25rem;
+        }
+
+        .modal-desc {
+            color: var(--muted-text);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .modal-badge-note {
+            background: rgba(198, 95, 131, 0.08);
+            border: 1px solid var(--border-color);
+            padding: 1rem;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            color: var(--deep-rose);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        /* Lightbox for Gallery */
+        .lightbox-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 8, 10, 0.92);
+            z-index: 3000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .lightbox-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lightbox-content {
+            max-width: 900px;
+            max-height: 85vh;
+            position: relative;
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 12px;
+            object-fit: contain;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        .lightbox-caption {
+            text-align: center;
+            color: var(--white);
+            margin-top: 1rem;
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: none;
+            color: var(--white);
+            font-size: 2rem;
+            cursor: pointer;
+            border: none;
+        }
+
+        /* Toast Notification */
+        .toast-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 4000;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            pointer-events: none;
+        }
+
+        .toast {
+            background: var(--dark-text);
+            color: var(--white);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+            pointer-events: auto;
+            animation: toastIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            border-left: 4px solid var(--deep-rose);
+        }
+
+        .toast.fade-out {
+            animation: toastOut 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes toastIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes toastOut {
+            from { opacity: 1; transform: translateY(0); }
+            to { opacity: 0; transform: translateY(20px); }
+        }
+
+        /* Mobile Drawer */
+        .mobile-drawer {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            max-width: 360px;
+            height: 100vh;
+            background: var(--white);
+            z-index: 2500;
+            box-shadow: -10px 0 30px rgba(0,0,0,0.15);
+            transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            padding: 2.5rem;
+        }
+
+        .mobile-drawer.active {
+            right: 0;
+        }
+
+        .drawer-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 3rem;
+        }
+
+        .drawer-nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .drawer-nav-link {
+            font-size: 1.25rem;
+            font-family: var(--font-serif);
+            font-weight: 600;
+            color: var(--dark-text);
+        }
+
+        .drawer-nav-link:hover {
+            color: var(--deep-rose);
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 46px;
+            height: 46px;
+            background: var(--white);
+            color: var(--deep-rose);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-hover);
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--deep-rose);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 992px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                text-align: center;
+            }
+            .hero-content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .hero-desc {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .hero-buttons {
+                justify-content: center;
+            }
+            .hero-image-container {
+                max-width: 500px;
+                margin: 0 auto;
+                height: 400px;
+            }
+            .hero-floating-card {
+                left: 10px;
+                bottom: -20px;
+            }
+            .nav-links, .nav-actions .action-icon-btn:not(#favorites-btn) {
+                display: none;
+            }
+            .hamburger {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==========================================
+       JAVASCRIPT CONFIGURATION & DATA (EDIT HERE)
+       ========================================== -->
+    <script>
+        /* 
+          ========================================================================
+          CONFIG & CUSTOMIZATION PANEL
+          ========================================================================
+          * ORDER_LINK: Change this link to your actual ordering platform (Instagram DM link, WhatsApp order link, Google Form, Linktree, or checkout page).
+          * INSTAGRAM_LINK: Link to your business Instagram profile.
+          * CONTACT_EMAIL: Your customer support or business email address.
+          * PRODUCTS: Add, edit, or remove products effortlessly by modifying this array.
+          * GALLERY: Add your animal care photographs here.
+          ========================================================================
+        */
+        const CONFIG = {
+            ORDER_LINK: "https://app.youform.com/forms/avvoba0x", // <-- PASTE YOUR ORDER LINK HERE
+            INSTAGRAM_LINK: "https://www.instagram.com/theloveproject.lb/?utm_source=ig_web_button_share_sheet", // <-- PASTE INSTAGRAM LINK HERE
+            CONTACT_EMAIL: "theloveprojectbym@hotmail.com" // <-- YOUR EMAIL HERE
+        };
+
+        const PRODUCTS = [
+            {
+                id: 1,
+                name: "Pink Dream Gloss",
+                price: 5.00,
+                image: "images/pink-dream.jpg",
+                fallbackImage: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&w=600&q=80",
+                description: "A beautiful glossy finish for your everyday natural glow with subtle shimmer and deep hydration.",
+                category: "Lip Gloss",
+                badge: "Bestseller",
+                available: true
+            },
+            {
+                id: 2,
+                name: "Velvet Rose Gloss",
+                price: 5.50,
+                image: "images/velvet-rose.jpg",
+                fallbackImage: "https://images.unsplash.com/photo-1631214524020-7f12530c23a5?auto=format&fit=crop&w=600&q=80",
+                description: "Rich rose tint that melts on your lips, delivering luxurious shine without any sticky feeling.",
+                category: "Lip Gloss",
+                badge: "New",
+                available: true
+            },
+            {
+                id: 3,
+                name: "Honey Paws Lip Oil",
+                price: 6.00,
+                image: "images/honey-paws.jpg",
+                fallbackImage: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=600&q=80",
+                description: "Nourishing botanical lip oil infused with vitamin E to heal and soften dry lips instantly.",
+                category: "Lip Care",
+                badge: "Limited Edition",
+                available: true
+            },
+            {
+                id: 4,
+                name: "Crystal Shine Clear Gloss",
+                price: 4.50,
+                image: "images/crystal-clear.jpg",
+                fallbackImage: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80",
+                description: "Ultra-glossy crystal clear formula that amplifies your natural lip color with mirror-like shine.",
+                category: "Lip Gloss",
+                badge: "Bestseller",
+                available: true
+            },
+            {
+                id: 5,
+                name: "Strawberry Kiss Gloss",
+                price: 5.00,
+                image: "images/strawberry-kiss.jpg",
+                fallbackImage: "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=600&q=80",
+                description: "Delightful pink tint with a gentle organic strawberry scent and long-lasting glossy comfort.",
+                category: "Lip Gloss",
+                badge: "New",
+                available: true
+            },
+            {
+                id: 6,
+                name: "Kindness Balm & Gloss Duo",
+                price: 9.50,
+                image: "images/duo-set.jpg",
+                fallbackImage: "https://images.unsplash.com/photo-1599733589046-10c005739ef9?auto=format&fit=crop&w=600&q=80",
+                description: "The ultimate pairing: our repairing daytime balm paired with our signature shimmering gloss.",
+                category: "Bundles",
+                badge: "Special",
+                available: true
+            }
+        ];
+
+        const ANIMAL_GALLERY = [
+            {
+                title: "My Beloved Dog",
+                subtitle: "The loyal companion who started my lifelong dedication to animal welfare.",
+                image: "images/dog-home.jpg",
+                fallbackImage: "https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                title: "Campus Stray Care",
+                subtitle: "Providing daily fresh food and clean water for university campus cats.",
+                image: "images/campus-cat.jpg",
+                fallbackImage: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                title: "Street Rescues",
+                subtitle: "Medical care, nourishment, and safe shelter funded by your purchases.",
+                image: "images/street-rescue.jpg",
+                fallbackImage: "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?auto=format&fit=crop&w=800&q=80"
+            }
+        ];
+    </script>
+
+    <!-- ==========================================
+       NAVIGATION HEADER
+       ========================================== -->
+    <header class="header">
+        <div class="container nav-container">
+            <a href="#" class="logo-wrapper">
+                <!-- LOGO IMAGE PLACEHOLDER: Replace images/logo.png with your actual logo file -->
+                <img src="logo.jpeg" alt="The Love Project Logo" class="logo-img">
+                <div class="logo-text-group">
+                    <span class="brand-name">The Love Project</span>
+                    <span class="brand-tagline-mini">Beauty With Purpose</span>
+                </div>
+            </a>
+
+            <nav class="nav-links">
+                <a href="#" class="nav-link active">Home</a>
+                <a href="#shop" class="nav-link">Shop</a>
+                <a href="#mission" class="nav-link">Our Mission</a>
+                <a href="#animals" class="nav-link">Animal Love</a>
+                <a href="#faq" class="nav-link">FAQ</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+
+            <div class="nav-actions">
+                <button class="action-icon-btn" id="favorites-btn" title="Saved Favorites" aria-label="View Favorites">
+                    <i class="far fa-heart"></i>
+                    <span class="badge-count" id="favorites-count">0</span>
+                </button>
+                <button class="hamburger" id="hamburger-btn" aria-label="Open Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Drawer Menu -->
+    <div class="mobile-drawer" id="mobile-drawer">
+        <div class="drawer-header">
+            <span class="brand-name">Menu</span>
+            <button class="modal-close" id="drawer-close" aria-label="Close Menu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="drawer-nav-links">
+            <a href="#" class="drawer-nav-link mobile-nav-link">Home</a>
+            <a href="#shop" class="drawer-nav-link mobile-nav-link">Shop</a>
+            <a href="#mission" class="drawer-nav-link mobile-nav-link">Our Mission</a>
+            <a href="#animals" class="drawer-nav-link mobile-nav-link">Animal Love</a>
+            <a href="#faq" class="drawer-nav-link mobile-nav-link">FAQ</a>
+            <a href="#contact" class="drawer-nav-link mobile-nav-link">Contact</a>
+        </div>
+        <button class="btn btn-primary" onclick="openOrderLink()">Order Now</button>
+    </div>
+
+    <!-- ==========================================
+       HERO SECTION
+       ========================================== -->
+    <section class="hero">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-paw"></i> 100% of Profits Donated to Animals
+                </div>
+                <h1 class="hero-title">Beauty With a Little More Love.</h1>
+                <p class="hero-subtitle">Gloss that makes you glow. Love that makes a difference.</p>
+                <p class="hero-desc">
+                    Every purchase helps us care for animals in need. From stray cats around our university to rescues at home, because beauty means more when it comes from the heart.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#shop" class="btn btn-primary">Shop Collection <i class="fas fa-arrow-right"></i></a>
+                    <a href="#mission" class="btn btn-outline">Discover Our Mission</a>
+                </div>
+            </div>
+            
+            <div class="hero-image-wrapper">
+                <div class="hero-image-container">
+                    <!-- HERO PHOTOGRAPH PLACEHOLDER: Replace images/hero.jpg with your brand photography -->
+                    <img src="logo.jpeg" alt="The Love Project Cosmetics">
+                </div>
+                <div class="hero-floating-card">
+                    <div class="floating-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="floating-text">
+                        <h4>Built on Kindness</h4>
+                        <p>Handmade with love & purpose</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Ticker -->
+    <div class="mission-ticker">
+        <div class="ticker-content">
+            <span><i class="fas fa-paw"></i> 100% Profits Donated to Animals</span>
+            <span>•</span>
+            <span><i class="fas fa-heart"></i> Cruelty-Free & Vegan-Friendly Formulation</span>
+            <span>•</span>
+            <span><i class="fas fa-star"></i> Premium Glossy Shine</span>
+            <span>•</span>
+            <span><i class="fas fa-paw"></i> 100% Profits Donated to Animals</span>
+            <span>•</span>
+            <span><i class="fas fa-heart"></i> Cruelty-Free & Vegan-Friendly Formulation</span>
+            <span>•</span>
+            <span><i class="fas fa-star"></i> Premium Glossy Shine</span>
+        </div>
+    </div>
+
+    <!-- ==========================================
+       SHOP SECTION
+       ========================================== -->
+    <section class="section-padding shop-section" id="shop">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Our Collection</span>
+                <h2 class="section-title">A Little Gloss, A Lot of Love.</h2>
+                <p class="section-desc">Explore our exquisite range of lip glosses. Each shade is crafted to perfection so you can look stunning while saving lives.</p>
+            </div>
+
+            <!-- Controls: Filters, Search, Sorting -->
+            <div class="shop-controls">
+                <div class="filter-tabs" id="filter-tabs">
+                    <button class="filter-btn active" data-category="All">All Products</button>
+                    <button class="filter-btn" data-category="Lip Gloss">Lip Gloss</button>
+                    <button class="filter-btn" data-category="Lip Care">Lip Care</button>
+                    <button class="filter-btn" data-category="Bundles">Bundles</button>
+                </div>
+
+                <div class="search-sort-wrapper">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="product-search" placeholder="Search products...">
+                    </div>
+                    <select class="sort-select" id="product-sort">
+                        <option value="featured">Sort by: Featured</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="name">Name: A to Z</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Product Grid -->
+            <div class="product-grid" id="product-grid">
+                <!-- Products dynamically rendered by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+       OUR MISSION SECTION
+       ========================================== -->
+    <section class="section-padding mission-section" id="mission">
+        <div class="container">
+            <div class="mission-grid">
+                <div class="mission-text-content">
+                    <span class="section-subtitle">Our Heart & Soul</span>
+                    <h2>More Than Gloss. It's Love.</h2>
+                    <p>
+                        The Love Project was created from a simple idea: to turn something beautiful into something deeply meaningful.
+                    </p>
+                    <p>
+                        My love for animals has always been a core part of who I am. From caring for my own dog at home to looking after stray cats around my university and on the streets, I believe every little act of kindness matters.
+                    </p>
+                    <div class="mission-quote">
+                        "That's why this project is about more than beauty products. All profits from our sales are dedicated to helping animals in need."
+                    </div>
+                    <p>
+                        Every order becomes a direct contribution towards food, veterinary care, medicine, and a better life for animals who cannot speak for themselves. Thank you for being part of something truly beautiful.
+                    </p>
+                    <div style="margin-top: 2rem;">
+                        <button class="btn btn-primary" onclick="openOrderLink()">Support Our Mission</button>
+                    </div>
+                </div>
+
+                <div class="mission-gallery-grid">
+                    <!-- MISSION IMAGE PLACEHOLDER 1: Replace images/mission-1.jpg -->
+                    <div class="mission-img-card">
+                        <img src="images/mission-1.jpg" onerror="this.src='https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=600&q=80'" alt="Animal Care Mission">
+                    </div>
+                    <!-- MISSION IMAGE PLACEHOLDER 2: Replace images/mission-2.jpg -->
+                    <div class="mission-img-card">
+                        <img src="images/mission-2.jpg" onerror="this.src='https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=600&q=80'" alt="Stray Cat Support">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+       ANIMAL LOVE SECTION (GALLERY)
+       ========================================== -->
+    <section class="section-padding animals-section" id="animals">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Little Paws, Big Love</span>
+                <h2 class="section-title">The Faces Behind The Mission</h2>
+                <p class="section-desc">A glimpse into the daily lives of the animals we cherish at home and care for on the streets. Your support directly feeds and protects them.</p>
+            </div>
+
+            <div class="animal-gallery" id="animal-gallery">
+                <!-- Dynamically rendered via JavaScript from ANIMAL_GALLERY array -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+       HOW IT WORKS SECTION
+       ========================================== -->
+    <section class="section-padding steps-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Simple & Transparent</span>
+                <h2 class="section-title">How Every Purchase Helps</h2>
+                <p class="section-desc">Joining our mission is effortless. Here is how your order transforms into real care for animals in need.</p>
+            </div>
+
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">01</div>
+                    <div class="step-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3>Choose Your Gloss</h3>
+                    <p>Discover and select your favorite luxury lip glosses, hydrating lip oils, or exclusive bundles.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">02</div>
+                    <div class="step-icon">
+                        <i class="fas fa-shopping-bag"></i>
+                    </div>
+                    <h3>Place Your Order</h3>
+                    <p>Follow our secure ordering link to complete your purchase and connect with us directly.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">03</div>
+                    <div class="step-icon">
+                        <i class="fas fa-paw"></i>
+                    </div>
+                    <h3>Spread the Love</h3>
+                    <p>100% of profits go directly towards purchasing food, medical care, and shelter for animals.</p>
+                </div>
+            </div>
+
+            <div class="text-center" style="margin-top: 3.5rem;">
+                <button class="btn btn-primary" onclick="openOrderLink()">Start Shopping Now</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+       TESTIMONIALS SECTION
+       ========================================== -->
+    <section class="section-padding testimonials-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Testimonials</span>
+                <h2 class="section-title">Sweet Words, Sweet Love</h2>
+                <p class="section-desc">What our wonderful customers are saying about our glosses and our meaningful mission.</p>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div>
+                        <div class="testimonial-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">"Pink Dream Gloss is absolute perfection! Not sticky at all, smells gorgeous, and knowing my purchase feeds street cats makes me love it even more."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80" alt="Sarah L." class="author-avatar">
+                        <div class="author-info">
+                            <h4>Sarah L.</h4>
+                            <p>Verified Customer</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div>
+                        <div class="testimonial-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">"Velvet Rose has become my daily go-to shade. The quality rivals high-end luxury brands, and the animal rescue mission is so inspiring."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=120&q=80" alt="Chloe M." class="author-avatar">
+                        <div class="author-info">
+                            <h4>Chloe M.</h4>
+                            <p>Verified Customer</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div>
+                        <div class="testimonial-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">"Such a gorgeous initiative! The glosses give you the prettiest mirror shine and glass-like lips. I ordered the duo set and I'm obsessed."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="Nour K." class="author-avatar">
+                        <div class="author-info">
+                            <h4>Nour K.</h4>
+                            <p>Verified Customer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+       FAQ SECTION
+       ========================================== -->
+    <section class="section-padding faq-section" id="faq">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Got Questions?</span>
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <p class="section-desc">Everything you need to know about our products, orders, and animal rescue donations.</p>
+            </div>
+
+            <div class="faq-wrapper">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>What is The Love Project?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>The Love Project is a purpose-driven beauty brand specializing in premium, comfortable lip glosses and care items where 100% of our profits are dedicated to helping and caring for animals in need.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Where do the profits go?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Every single penny of profit goes directly towards purchasing nutritious food, medical supplies, veterinary care, and safe shelters for stray cats around universities and streets, as well as supporting our rescue animals at home.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How can I place an order?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Clicking any "Order Now" or "Shop Now" button on the website will redirect you straight to our secure ordering platform where you can easily select your items and finalize your delivery.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Are the products cruelty-free and safe?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes, absolutely! All our formulas are 100% cruelty-free, crafted with nourishing botanical oils and safe, high-quality ingredients designed to give your lips a luxurious, non-sticky shine.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How can I contact you or collaborate?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>You can reach out to us anytime via email or through our official Instagram page linked in the contact section below. We always love connecting with fellow animal lovers and supporters!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+       CONTACT SECTION
+       ========================================== -->
+    <section class="section-padding contact-section" id="contact">
+        <div class="container">
+            <div class="contact-card-box">
+                <span class="section-subtitle" style="color: var(--deep-rose);">Get In Touch</span>
+                <h2>Let's Spread Kindness Together</h2>
+                <p>Have questions about a product, want to place a custom order, or simply want to chat about animal rescue? Reach out to us anytime!</p>
+                
+                <div class="contact-buttons">
+                    <a href="#" id="contact-ig-btn" class="btn btn-primary" target="_blank">
+                        <i class="fab fa-instagram"></i> Message on Instagram
+                    </a>
+                    <a href="#" id="contact-email-btn" class="btn btn-outline">
+                        <i class="fas fa-envelope"></i> Send an Email
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+       FOOTER
+       ========================================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>The Love Project</h3>
+                    <p>Premium lip glosses and beauty essentials created with love and purpose. 100% of profits are dedicated to animal welfare and rescue.</p>
+                    <div class="footer-socials">
+                        <a href="#" id="footer-ig-link" class="footer-social-btn" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" id="footer-email-link" class="footer-social-btn" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <div class="footer-links">
+                        <a href="#">Home</a>
+                        <a href="#shop">Shop Collection</a>
+                        <a href="#mission">Our Mission</a>
+                        <a href="#animals">Animal Love</a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h3>Customer Care</h3>
+                    <div class="footer-links">
+                        <a href="#faq">FAQ & Shipping</a>
+                        <a href="#contact">Contact Us</a>
+                        <a href="#" onclick="openOrderLink()">Place an Order</a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h3>Mission Statement</h3>
+                    <p>Every gloss sold feeds a hungry paw and brings warmth to an animal in need.</p>
+                    <p style="color: var(--soft-blush); font-weight: 600;">Beauty with a purpose. Love without limits.</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year">2026</span> The Love Project. All rights reserved.</p>
+                <div class="footer-closing">Made with love. Shared with paws. 🐾</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==========================================
+       MODALS & LIGHTBOX & TOAST CONTAINERS
+       ========================================== -->
+    <!-- Product Detail Modal -->
+    <div class="modal-overlay" id="product-modal">
+        <div class="modal-container">
+            <button class="modal-close" id="modal-close-btn" aria-label="Close Modal">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-body">
+                <div class="modal-img-col">
+                    <img id="modal-product-img" src="" alt="Product Detail">
+                    <span class="product-badge" id="modal-product-badge">Bestseller</span>
+                </div>
+                <div class="modal-content-col">
+                    <span class="modal-category" id="modal-product-category">Lip Gloss</span>
+                    <h2 class="modal-title" id="modal-product-name">Product Name</h2>
+                    <div class="modal-price" id="modal-product-price">$0.00</div>
+                    <p class="modal-desc" id="modal-product-desc">Product description goes here...</p>
+                    
+                    <div class="modal-badge-note">
+                        <i class="fas fa-paw fa-lg"></i>
+                        <span>100% of profits from this item help feed and care for rescue animals.</span>
+                    </div>
+
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <button class="btn btn-primary" onclick="openOrderLink()">
+                            <i class="fas fa-shopping-bag"></i> Order This Item
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Gallery Lightbox -->
+    <div class="lightbox-overlay" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightbox-close" aria-label="Close Lightbox">&times;</button>
+            <img id="lightbox-img" src="" alt="Enlarged Animal View">
+            <div class="lightbox-caption" id="lightbox-caption">Caption text</div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="back-to-top" aria-label="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- ==========================================
+       JAVASCRIPT APPLICATION LOGIC
+       ========================================== -->
+    <script>
+        /* 
+          ========================================================================
+          APPLICATION CONTROLLER
+          ========================================================================
+        */
+
+        // State Management
+        let favorites = JSON.parse(localStorage.getItem('tlp_favorites')) || [];
+        let currentFilter = 'All';
+        let currentSearchQuery = '';
+        let currentSort = 'featured';
+
+        // DOM Elements
+        const productGrid = document.getElementById('product-grid');
+        const filterTabs = document.getElementById('filter-tabs');
+        const productSearchInput = document.getElementById('product-search');
+        const productSortSelect = document.getElementById('product-sort');
+        const favoritesCountSpan = document.getElementById('favorites-count');
+        const favoritesBtn = document.getElementById('favorites-btn');
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const mobileDrawer = document.getElementById('mobile-drawer');
+        const drawerClose = document.getElementById('drawer-close');
+        const productModal = document.getElementById('product-modal');
+        const modalCloseBtn = document.getElementById('modal-close-btn');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxCaption = document.getElementById('lightbox-caption');
+        const lightboxClose = document.getElementById('lightbox-close');
+        const backToTopBtn = document.getElementById('back-to-top');
+        const animalGalleryContainer = document.getElementById('animal-gallery');
+
+        // Initialize App
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProducts();
+            renderAnimalGallery();
+            setupEventListeners();
+            updateFavoritesBadge();
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+
+            // Set dynamic links from CONFIG
+            document.getElementById('contact-ig-btn').href = CONFIG.INSTAGRAM_LINK;
+            document.getElementById('footer-ig-link').href = CONFIG.INSTAGRAM_LINK;
+            document.getElementById('contact-email-btn').href = `mailto:${CONFIG.CONTACT_EMAIL}`;
+            document.getElementById('footer-email-link').href = `mailto:${CONFIG.CONTACT_EMAIL}`;
+        });
+
+        /* ==========================================
+           PRODUCT RENDERING & FILTERING
+           ========================================== */
+        function renderProducts() {
+            let filtered = PRODUCTS.filter(product => {
+                const matchesCategory = currentFilter === 'All' || product.category === currentFilter;
+                const matchesSearch = product.name.toLowerCase().includes(currentSearchQuery.toLowerCase()) || 
+                                      product.description.toLowerCase().includes(currentSearchQuery.toLowerCase());
+                return matchesCategory && matchesSearch;
+            });
+
+            // Sorting
+            if (currentSort === 'price-low') {
+                filtered.sort((a, b) => a.price - b.price);
+            } else if (currentSort === 'price-high') {
+                filtered.sort((a, b) => b.price - a.price);
+            } else if (currentSort === 'name') {
+                filtered.sort((a, b) => a.name.localeCompare(b.name));
+            }
+
+            if (filtered.length === 0) {
+                productGrid.innerHTML = `
+                    <div class="no-results">
+                        <i class="fas fa-search"></i>
+                        <h3>No products found</h3>
+                        <p>Try searching for something else or clearing your filters.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            productGrid.innerHTML = filtered.map(product => {
+                const isFavorite = favorites.includes(product.id);
+                return `
+                    <div class="product-card">
+                        <div class="product-image-wrap" onclick="openProductModal(${product.id})">
+                            ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
+                            <button class="wishlist-btn ${isFavorite ? 'active' : ''}" onclick="event.stopPropagation(); toggleFavorite(${product.id})" title="Save to Favorites">
+                                <i class="${isFavorite ? 'fas' : 'far'} fa-heart"></i>
+                            </button>
+                            <img src="${product.image}" onerror="this.src='${product.fallbackImage}'" alt="${product.name}">
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">${product.category}</span>
+                            <h3 class="product-title" onclick="openProductModal(${product.id})">${product.name}</h3>
+                            <p class="product-desc">${product.description}</p>
+                            <div class="product-footer">
+                                <div class="product-price">$${product.price.toFixed(2)}</div>
+                                <div class="product-action-btns">
+                                    <button class="btn-icon-sm" onclick="openProductModal(${product.id})" title="View Details"><i class="fas fa-eye"></i></button>
+                                    <button class="btn-icon-sm" onclick="openOrderLink()" title="Order Now"><i class="fas fa-shopping-bag"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        /* ==========================================
+           ANIMAL GALLERY RENDERING
+           ========================================== */
+        function renderAnimalGallery() {
+            animalGalleryContainer.innerHTML = ANIMAL_GALLERY.map(item => `
+                <div class="gallery-item" onclick="openLightbox('${item.image}', '${item.fallbackImage}', '${item.title} — ${item.subtitle}')">
+                    <img src="${item.image}" onerror="this.src='${item.fallbackImage}'" alt="${item.title}">
+                    <div class="gallery-overlay">
+                        <div class="zoom-icon"><i class="fas fa-expand"></i></div>
+                        <h4>${item.title}</h4>
+                        <p>${item.subtitle}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        /* ==========================================
+           INTERACTIVITY & EVENT LISTENERS
+           ========================================== */
+        function setupEventListeners() {
+            // Filter Tabs
+            filterTabs.addEventListener('click', (e) => {
+                if (e.target.classList.contains('filter-btn')) {
+                    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                    e.target.classList.add('active');
+                    currentFilter = e.target.getAttribute('data-category');
+                    renderProducts();
+                }
+            });
+
+            // Search input
+            productSearchInput.addEventListener('input', (e) => {
+                currentSearchQuery = e.target.value.trim();
+                renderProducts();
+            });
+
+            // Sort select
+            productSortSelect.addEventListener('change', (e) => {
+                currentSort = e.target.value;
+                renderProducts();
+            });
+
+            // Mobile menu toggle
+            hamburgerBtn.addEventListener('click', () => mobileDrawer.classList.add('active'));
+            drawerClose.addEventListener('click', () => mobileDrawer.classList.remove('active'));
+            document.querySelectorAll('.mobile-nav-link').forEach(link => {
+                link.addEventListener('click', () => mobileDrawer.classList.remove('active'));
+            });
+
+            // Modal Close
+            modalCloseBtn.addEventListener('click', () => productModal.classList.remove('active'));
+            productModal.addEventListener('click', (e) => {
+                if (e.target === productModal) productModal.classList.remove('active');
+            });
+
+            // Lightbox Close
+            lightboxClose.addEventListener('click', () => lightbox.classList.remove('active'));
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) lightbox.classList.remove('active');
+            });
+
+            // FAQ Accordion
+            document.querySelectorAll('.faq-question').forEach(question => {
+                question.addEventListener('click', () => {
+                    const item = question.parentElement;
+                    const isActive = item.classList.contains('active');
+                    document.querySelectorAll('.faq-item').forEach(faq => faq.classList.remove('active'));
+                    if (!isActive) item.classList.add('active');
+                });
+            });
+
+            // Back to top scroll listener
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 400) {
+                    backToTopBtn.classList.add('active');
+                } else {
+                    backToTopBtn.classList.remove('active');
+                }
+            });
+
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // Favorites filter toggle on header heart click
+            favoritesBtn.addEventListener('click', () => {
+                if (favorites.length === 0) {
+                    showToast("No favorite items saved yet! Click the heart on any product.");
+                    return;
+                }
+                // Filter view to only show favorites or scroll to shop
+                document.getElementById('shop').scrollIntoView({ behavior: 'smooth' });
+                // Temporarily filter products to favorites
+                const originalFilter = currentFilter;
+                currentFilter = 'All';
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                
+                // Render only favorite items
+                const favoriteProducts = PRODUCTS.filter(p => favorites.includes(p.id));
+                productGrid.innerHTML = favoriteProducts.map(product => {
+                    return `
+                        <div class="product-card">
+                            <div class="product-image-wrap" onclick="openProductModal(${product.id})">
+                                ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
+                                <button class="wishlist-btn active" onclick="event.stopPropagation(); toggleFavorite(${product.id})">
+                                    <i class="fas fa-heart"></i>
+                                </button>
+                                <img src="${product.image}" onerror="this.src='${product.fallbackImage}'" alt="${product.name}">
+                            </div>
+                            <div class="product-info">
+                                <span class="product-category">${product.category}</span>
+                                <h3 class="product-title" onclick="openProductModal(${product.id})">${product.name}</h3>
+                                <p class="product-desc">${product.description}</p>
+                                <div class="product-footer">
+                                    <div class="product-price">$${product.price.toFixed(2)}</div>
+                                    <div class="product-action-btns">
+                                        <button class="btn-icon-sm" onclick="openProductModal(${product.id})"><i class="fas fa-eye"></i></button>
+                                        <button class="btn-icon-sm" onclick="openOrderLink()"><i class="fas fa-shopping-bag"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+                showToast(`Showing ${favoriteProducts.length} saved favorite items.`);
+            });
+        }
+
+        /* ==========================================
+           MODAL & LIGHTBOX FUNCTIONS
+           ========================================== */
+        function openProductModal(productId) {
+            const product = PRODUCTS.find(p => p.id === productId);
+            if (!product) return;
+
+            document.getElementById('modal-product-img').src = product.image;
+            document.getElementById('modal-product-img').onerror = function() { this.src = product.fallbackImage; };
+            document.getElementById('modal-product-category').textContent = product.category;
+            document.getElementById('modal-product-name').textContent = product.name;
+            document.getElementById('modal-product-price').textContent = `$${product.price.toFixed(2)}`;
+            document.getElementById('modal-product-desc').textContent = product.description;
+            
+            const badgeEl = document.getElementById('modal-product-badge');
+            if (product.badge) {
+                badgeEl.textContent = product.badge;
+                badgeEl.style.display = 'block';
+            } else {
+                badgeEl.style.display = 'none';
+            }
+
+            productModal.classList.add('active');
+        }
+
+        function openLightbox(imgSrc, fallbackSrc, captionText) {
+            lightboxImg.src = imgSrc;
+            lightboxImg.onerror = function() { this.src = fallbackSrc; };
+            lightboxCaption.textContent = captionText;
+            lightbox.classList.add('active');
+        }
+
+        /* ==========================================
+           FAVORITES & WISHLIST MANAGEMENT
+           ========================================== */
+        function toggleFavorite(productId) {
+            const index = favorites.indexOf(productId);
+            if (index > -1) {
+                favorites.splice(index, 1);
+                showToast("Removed from your favorites.");
+            } else {
+                favorites.push(productId);
+                showToast("Added to your favorites with ❤️!");
+            }
+            localStorage.setItem('tlp_favorites', JSON.stringify(favorites));
+            updateFavoritesBadge();
+            renderProducts();
+        }
+
+        function updateFavoritesBadge() {
+            favoritesCountSpan.textContent = favorites.length;
+        }
+
+        /* ==========================================
+           ORDERING LINK HANDLER
+           ========================================== */
+        function openOrderLink() {
+            if (!CONFIG.ORDER_LINK || CONFIG.ORDER_LINK.includes("PASTE_YOUR_LINK_HERE")) {
+                showToast("Order link configuration pending! Contact us via Instagram or email to order.");
+                // Fallback to Instagram link if order link isn't configured yet
+                setTimeout(() => {
+                    window.open(CONFIG.INSTAGRAM_LINK, '_blank');
+                }, 1500);
+            } else {
+                window.open(CONFIG.ORDER_LINK, '_blank');
+            }
+        }
+
+        /* ==========================================
+           TOAST NOTIFICATION SYSTEM
+           ========================================== */
+        function showToast(message) {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerHTML = `<i class="fas fa-heart" style="color: var(--deep-rose);"></i> <span>${message}</span>`;
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.add('fade-out');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
