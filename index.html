@@ -1662,77 +1662,76 @@
           ========================================================================
         */
         const CONFIG = {
-            ORDER_LINK: "https://app.youform.com/forms/avvoba0x", // <-- PASTE YOUR ORDER LINK HERE
+            ORDER_LINK: "https://wa.me/qr/GSWKF7WEW75SI1", // <-- PASTE YOUR ORDER LINK HERE
 			WHATSAPP_LINK: "https://wa.me/qr/GSWKF7WEW75SI1",
-            INSTAGRAM_LINK: "https://www.instagram.com/theloveproject.lb/?utm_source=ig_web_button_share_sheet", // <-- PASTE INSTAGRAM LINK HERE
-            CONTACT_EMAIL: "theloveprojectbym@hotmail.com" // <-- YOUR EMAIL HERE
+            INSTAGRAM_LINK: "https://www.instagram.com/theloveproject.lb/?utm_source=ig_web_button_share_sheet", // <-- PASTE INSTAGRAM LINK HERE // <-- YOUR EMAIL HERE
         };
 
         const PRODUCTS = [
             {
                 id: 1,
-                name: "Pink Dream Gloss",
-                price: 5.00,
-                image: "images/pink-dream.jpg",
+                name: "Woody Rose",
+                price: 10.00,
+                image: "logo.jpeg",
                 fallbackImage: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&w=600&q=80",
-                description: "A beautiful glossy finish for your everyday natural glow with subtle shimmer and deep hydration.",
-                category: "Lip Gloss",
-                badge: "Bestseller",
+                description: "A soft rosy shade.",
+                category: "",
+                badge: "New",
                 available: true
             },
             {
                 id: 2,
-                name: "Velvet Rose Gloss",
-                price: 5.50,
-                image: "images/velvet-rose.jpg",
+                name: "Berry Burst",
+                price: 10.00,
+                image: "logo.jpeg",
                 fallbackImage: "https://images.unsplash.com/photo-1631214524020-7f12530c23a5?auto=format&fit=crop&w=600&q=80",
-                description: "Rich rose tint that melts on your lips, delivering luxurious shine without any sticky feeling.",
-                category: "Lip Gloss",
+                description: "A rich berry-inspired shade.",
+                category: "",
                 badge: "New",
                 available: true
             },
             {
                 id: 3,
-                name: "Honey Paws Lip Oil",
-                price: 6.00,
-                image: "images/honey-paws.jpg",
+                name: "Sparkling Blush",
+                price: 10.00,
+                image: "logo.jpeg",
                 fallbackImage: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=600&q=80",
-                description: "Nourishing botanical lip oil infused with vitamin E to heal and soften dry lips instantly.",
-                category: "Lip Care",
-                badge: "Limited Edition",
+                description: "A rosy shade with a sparkling look.",
+                category: "",
+                badge: "New",
                 available: true
             },
             {
                 id: 4,
-                name: "Crystal Shine Clear Gloss",
-                price: 4.50,
-                image: "images/crystal-clear.jpg",
+                name: "06 FigFig",
+                price: 10.00,
+                image: "logo.jpeg",
                 fallbackImage: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80",
-                description: "Ultra-glossy crystal clear formula that amplifies your natural lip color with mirror-like shine.",
-                category: "Lip Gloss",
-                badge: "Bestseller",
+                description: "A fig-inspired rosy shade.",
+                category: "",
+                badge: "New",
                 available: true
             },
             {
                 id: 5,
-                name: "Strawberry Kiss Gloss",
-                price: 5.00,
-                image: "images/strawberry-kiss.jpg",
+                name: "Warm Bronze",
+                price: 10.00,
+                image: "logo.jpeg",
                 fallbackImage: "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=600&q=80",
-                description: "Delightful pink tint with a gentle organic strawberry scent and long-lasting glossy comfort.",
-                category: "Lip Gloss",
+                description: "A warm bronze-toned shade.",
+                category: "",
                 badge: "New",
                 available: true
             },
             {
                 id: 6,
-                name: "Kindness Balm & Gloss Duo",
-                price: 9.50,
-                image: "images/duo-set.jpg",
+                name: "COMING SOON !",
+                price: 10.00,
+                image: "logo.jpeg",
                 fallbackImage: "https://images.unsplash.com/photo-1599733589046-10c005739ef9?auto=format&fit=crop&w=600&q=80",
-                description: "The ultimate pairing: our repairing daytime balm paired with our signature shimmering gloss.",
-                category: "Bundles",
-                badge: "Special",
+                description: "",
+                category: "",
+                badge: "COMING SOON !",
                 available: true
             }
         ];
@@ -1827,7 +1826,9 @@
                 <h1 class="hero-title">Beauty With a Little More Love.</h1>
                 <p class="hero-subtitle">Gloss that makes you glow. Love that makes a difference.</p>
                 <p class="hero-desc">
-                    Every purchase helps us care for animals in need. From stray cats around our university to rescues at home, because beauty means more when it comes from the heart.
+                   The Love Project by M was created with one simple purpose: to turn something small into something meaningful. We believe every animal deserves love, care and a safe place to call home.
+
+All profits go towards helping animals in need. Thank you for making every purchase part of something bigger.
                 </p>
                 <div class="hero-buttons">
                     <a href="#shop" class="btn btn-primary">Shop Collection <i class="fas fa-arrow-right"></i></a>
@@ -1885,9 +1886,6 @@
             <div class="shop-controls">
                 <div class="filter-tabs" id="filter-tabs">
                     <button class="filter-btn active" data-category="All">All Products</button>
-                    <button class="filter-btn" data-category="Lip Gloss">Lip Gloss</button>
-                    <button class="filter-btn" data-category="Lip Care">Lip Care</button>
-                    <button class="filter-btn" data-category="Bundles">Bundles</button>
                 </div>
 
                 <div class="search-sort-wrapper">
@@ -2036,7 +2034,7 @@
                         <i class="fas fa-chevron-down"></i>
                     </button>
                     <div class="faq-answer">
-                        <p>The Love Project is a purpose-driven beauty brand specializing in premium, comfortable lip glosses and care items where 100% of our profits are dedicated to helping and caring for animals in need.</p>
+                        <p>The Love Project is a purpose-driven brand specializing in premium, comfortable lip glosses and care items where 100% of our profits are dedicated to helping and caring for animals in need.</p>
                     </div>
                 </div>
 
@@ -2062,21 +2060,11 @@
 
                 <div class="faq-item">
                     <button class="faq-question">
-                        <span>Are the products cruelty-free and safe?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Yes, absolutely! All our formulas are 100% cruelty-free, crafted with nourishing botanical oils and safe, high-quality ingredients designed to give your lips a luxurious, non-sticky shine.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question">
                         <span>How can I contact you or collaborate?</span>
                         <i class="fas fa-chevron-down"></i>
                     </button>
                     <div class="faq-answer">
-                        <p>You can reach out to us anytime via email or through our official Instagram page linked in the contact section below. We always love connecting with fellow animal lovers and supporters!</p>
+                        <p>You can reach out to us anytime via Whatsapp or through our official Instagram page linked in the contact section below. We always love connecting with fellow animal lovers and supporters!</p>
                     </div>
                 </div>
             </div>
@@ -2097,9 +2085,6 @@
                     <a href="#" id="contact-ig-btn" class="btn btn-primary" target="_blank">
                         <i class="fab fa-instagram"></i> Message on Instagram
                     </a>
-                    <a href="#" id="contact-email-btn" class="btn btn-outline">
-                        <i class="fas fa-envelope"></i> Send an Email
-                    </a>
 					<a href="#" id="contact-wa-btn" class="btn btn-outline" target="_blank">
 						<i class="fab fa-whatsapp"></i> Chat on WhatsApp
 					</a>
@@ -2119,7 +2104,6 @@
                     <p>Premium lip glosses and beauty essentials created with love and purpose. 100% of profits are dedicated to animal welfare and rescue.</p>
                     <div class="footer-socials">
                         <a href="#" id="footer-ig-link" class="footer-social-btn" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" id="footer-email-link" class="footer-social-btn" aria-label="Email"><i class="fas fa-envelope"></i></a>
 						<a href="#" id="footer-wa-link" class="footer-social-btn" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
@@ -2257,8 +2241,6 @@
             document.getElementById('footer-ig-link').href = CONFIG.INSTAGRAM_LINK;
 			document.getElementById('contact-wa-btn').href = CONFIG.WHATSAPP_LINK;
 			document.getElementById('footer-wa-link').href = CONFIG.WHATSAPP_LINK;
-            document.getElementById('contact-email-btn').href = `mailto:${CONFIG.CONTACT_EMAIL}`;
-            document.getElementById('footer-email-link').href = `mailto:${CONFIG.CONTACT_EMAIL}`;
         });
 
         /* ==========================================
