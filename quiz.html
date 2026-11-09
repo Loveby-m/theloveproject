@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Animal Care Masterclass Quiz — The Love Project</title>
+    <meta name="description" content="Test your knowledge on diverse animals, wildlife, and health care. Score 8+ correct to unlock exclusive order discounts!">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- html2canvas for image generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <!-- jsPDF for PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <style>
+        /* ==========================================
+           CSS DESIGN TOKENS (Matching index.html)
+           ========================================== */
+        :root {
+            --baby-pink: #FCE4EC;
+            --soft-blush: #F8BBD0;
+            --pastel-pink: #FFF0F5;
+            --rose-pink: #E8A1B2;
+            --deep-rose: #C65F83;
+            --rose-dark: #A3476B;
+            --white: #FFFFFF;
+            --dark-text: #393039;
+            --muted-text: #7A6C7A;
+            --bg-light: #FFFAFC;
+            --card-bg: #FFFFFF;
+            --border-color: #F3D3DF;
+            --shadow-subtle: 0 10px 30px rgba(198, 95, 131, 0.08);
+            --shadow-hover: 0 20px 40px rgba(198, 95, 131, 0.15);
+            --transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-sans: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--dark-text);
+            background-color: var(--bg-light);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-serif);
+            font-weight: 600;
+            color: var(--dark-text);
+            line-height: 1.25;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        button, input {
+            font-family: inherit;
+            border: none;
+            outline: none;
+            background: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header matching index.html */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(255, 250, 252, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 90px;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-img {
+            height: 48px;
+            width: 48px;
+            object-fit: contain;
+            border-radius: 50%;
+            border: 1px solid var(--rose-pink);
+            background: var(--white);
+            padding: 2px;
+        }
+
+        .brand-name {
+            font-family: var(--font-serif);
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--dark-text);
+        }
+
+        .brand-tagline-mini {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--deep-rose);
+            font-weight: 600;
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--deep-rose);
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            background: var(--pastel-pink);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-back:hover {
+            background: var(--deep-rose);
+            color: var(--white);
+        }
+
+        /* Main Quiz Wrapper */
+        .quiz-main {
+            flex: 1;
+            padding: 130px 0 5rem 0;
+            position: relative;
+        }
+
+        .quiz-card-box {
+            background: var(--white);
+            border-radius: 30px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-hover);
+            padding: 3.5rem 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Steps */
+        .quiz-step {
+            display: none;
+        }
+
+        .quiz-step.active {
+            display: block;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-subtitle {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--deep-rose);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: block;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 3.5vw, 2.6rem);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .section-desc {
+            color: var(--muted-text);
+            font-size: 1.05rem;
+            text-align: center;
+            max-width: 650px;
+            margin: 0 auto 2.5rem auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark-text);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            border-radius: 14px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-light);
+            font-size: 1rem;
+            color: var(--dark-text);
+            transition: var(--transition);
+        }
+
+        .form-input:focus {
+            border-color: var(--deep-rose);
+            background: var(--white);
+            box-shadow: 0 0 0 3px rgba(198, 95, 131, 0.1);
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 1rem 2.2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            background-color: var(--deep-rose);
+            color: var(--white);
+            box-shadow: 0 8px 25px rgba(198, 95, 131, 0.3);
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--rose-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(198, 95, 131, 0.4);
+        }
+
+        /* Quiz UI */
+        .quiz-header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .quiz-progress-text {
+            font-weight: 600;
+            color: var(--deep-rose);
+            font-size: 0.95rem;
+        }
+
+        .quiz-difficulty-badge {
+            background: var(--pastel-pink);
+            color: var(--deep-rose);
+            padding: 0.25rem 0.85rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            border: 1px solid var(--border-color);
+        }
+
+        .question-title {
+            font-size: 1.35rem;
+            margin-bottom: 1.75rem;
+            font-family: var(--font-serif);
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .option-btn {
+            width: 100%;
+            padding: 1.1rem 1.5rem;
+            text-align: left;
+            background: var(--bg-light);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            font-size: 1rem;
+            color: var(--dark-text);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .option-btn:hover {
+            background: var(--baby-pink);
+            border-color: var(--deep-rose);
+            transform: translateX(4px);
+        }
+
+        .option-btn.selected {
+            background: var(--deep-rose);
+            color: var(--white);
+            border-color: var(--deep-rose);
+        }
+
+        .quiz-footer-nav {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        /* Results Screen */
+        .results-container {
+            text-align: center;
+        }
+
+        .score-display-box {
+            font-size: 3rem;
+            font-family: var(--font-serif);
+            font-weight: 700;
+            color: var(--deep-rose);
+            margin: 0.5rem 0 1.5rem 0;
+        }
+
+        /* The Downloadable Reward Card */
+        .reward-card {
+            background: linear-gradient(135deg, #FFF0F5 0%, #FCE4EC 100%);
+            border: 2px solid var(--rose-pink);
+            border-radius: 24px;
+            padding: 2.5rem;
+            max-width: 520px;
+            margin: 2rem auto;
+            box-shadow: var(--shadow-subtle);
+            text-align: left;
+            position: relative;
+        }
+
+        .reward-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1rem;
+        }
+
+        .reward-card-brand {
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--dark-text);
+        }
+
+        .reward-card-badge {
+            background: var(--deep-rose);
+            color: var(--white);
+            padding: 0.3rem 0.9rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .reward-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .reward-detail-item span {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--muted-text);
+            font-weight: 600;
+            margin-bottom: 0.15rem;
+        }
+
+        .reward-detail-item strong {
+            color: var(--dark-text);
+            font-size: 1rem;
+        }
+
+        .discount-banner-box {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 1.25rem;
+            text-align: center;
+            border: 1px dashed var(--deep-rose);
+        }
+
+        .discount-banner-box h4 {
+            font-size: 1.6rem;
+            color: var(--deep-rose);
+            margin-bottom: 0.2rem;
+        }
+
+        .discount-banner-box p {
+            font-size: 0.85rem;
+            color: var(--muted-text);
+        }
+
+        /* Review answers summary breakdown toggle */
+        .answers-summary-list {
+            text-align: left;
+            margin: 2rem 0;
+            background: var(--bg-light);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.5rem;
+            max-height: 280px;
+            overflow-y: auto;
+        }
+
+        .answer-summary-item {
+            font-size: 0.9rem;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .answer-summary-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .answer-summary-item.correct-ans {
+            color: #2E7D32;
+        }
+
+        .answer-summary-item.wrong-ans {
+            color: #C62828;
+        }
+
+        /* Action Buttons at End */
+        .result-actions-wrapper {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--dark-text);
+            border: 1.5px solid var(--rose-pink);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            transition: var(--transition);
+        }
+
+        .btn-outline:hover {
+            background: var(--baby-pink);
+            border-color: var(--deep-rose);
+            transform: translateY(-2px);
+        }
+
+        /* Toast Notification */
+        .toast-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 4000;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            pointer-events: none;
+        }
+
+        .toast {
+            background: var(--dark-text);
+            color: var(--white);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+            pointer-events: auto;
+            animation: toastIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            border-left: 4px solid var(--deep-rose);
+        }
+
+        @keyframes toastIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .quiz-card-box {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="index.html" class="logo-wrapper">
+                <img src="logo.jpeg" alt="The Love Project Logo" class="logo-img" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80'">
+                <div>
+                    <span class="brand-name">The Love Project</span>
+                    <span class="brand-tagline-mini">Animal Care Quiz</span>
+                </div>
+            </a>
+            <a href="index.html" class="btn-back">
+                <i class="fas fa-arrow-left"></i> Return to Shop
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Quiz Section -->
+    <main class="quiz-main">
+        <div class="container">
+            <div class="quiz-card-box">
+
+                <!-- STEP 1: Registration Gate -->
+                <div class="quiz-step active" id="step-registration">
+                    <span class="section-subtitle">Animal Welfare Masterclass</span>
+                    <h2 class="section-title">Test Your General Animal Knowledge</h2>
+                    <p class="section-desc">Take our 10-question expert quiz covering wildlife, marine life, birds, reptiles, mammals, and general animal care. Score 8 or more correct to unlock exclusive order discounts!</p>
+                    
+                    <form id="registration-form" onsubmit="startQuiz(event)">
+                        <div class="form-group">
+                            <label class="form-label" for="user-name">Your Full Name</label>
+                            <input type="text" id="user-name" class="form-input" placeholder="e.g. Sarah Jenkins" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="user-email">Email Address</label>
+                            <input type="email" id="user-email" class="form-input" placeholder="e.g. sarah@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="user-phone">Phone Number / WhatsApp</label>
+                            <input type="tel" id="user-phone" class="form-input" placeholder="e.g. +1 234 567 8900" required>
+                        </div>
+                        <button type="submit" class="btn-primary">
+                            Enter Quiz & Begin <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- STEP 2: Quiz Questions Container -->
+                <div class="quiz-step" id="step-quiz">
+                    <div class="quiz-header-meta">
+                        <span class="quiz-progress-text" id="progress-indicator">Question 1 of 10</span>
+                        <span class="quiz-difficulty-badge" id="difficulty-indicator">Normal</span>
+                    </div>
+
+                    <h3 class="question-title" id="question-text">Loading question...</h3>
+                    
+                    <div class="options-list" id="options-container">
+                        <!-- Options injected dynamically -->
+                    </div>
+
+                    <div class="quiz-footer-nav">
+                        <button class="btn-primary" id="next-question-btn" onclick="handleNextQuestion()" style="width: auto; display: none;">
+                            Next Question <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- STEP 3: Results & Reward Card -->
+                <div class="quiz-step" id="step-results">
+                    <div class="results-container">
+                        <span class="section-subtitle">Quiz Completed</span>
+                        <h2 class="section-title">Your Animal Welfare Score</h2>
+                        <div class="score-display-box" id="final-score-text">0 / 10</div>
+                        <p class="section-desc" id="score-commentary">Analyzing your score...</p>
+
+                        <!-- Reward Card (Only unlocked if 8+ correct) -->
+                        <div id="reward-card-wrapper" style="display: none;">
+                            <div class="reward-card" id="printable-reward-card">
+                                <div class="reward-card-header">
+                                    <div class="reward-card-brand">The Love Project</div>
+                                    <span class="reward-card-badge">Certified Expert</span>
+                                </div>
+                                <div class="reward-details">
+                                    <div class="reward-detail-item">
+                                        <span>Participant Name</span>
+                                        <strong id="card-name">-</strong>
+                                    </div>
+                                    <div class="reward-detail-item">
+                                        <span>Score Achieved</span>
+                                        <strong id="card-score">-</strong>
+                                    </div>
+                                    <div class="reward-detail-item">
+                                        <span>Email Address</span>
+                                        <strong id="card-email">-</strong>
+                                    </div>
+                                    <div class="reward-detail-item">
+                                        <span>Phone Number</span>
+                                        <strong id="card-phone">-</strong>
+                                    </div>
+                                </div>
+                                <div class="discount-banner-box">
+                                    <h4 id="card-discount-text">0% OFF</h4>
+                                    <p>Exclusive discount on your next order!</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Answers Breakdown Review -->
+                        <div style="text-align: left; margin-top: 2rem;">
+                            <h4 style="font-family: var(--font-serif); margin-bottom: 0.75rem; font-size: 1.2rem;">Detailed Answers Breakdown:</h4>
+                            <div class="answers-summary-list" id="answers-summary-list">
+                                <!-- Injected dynamically -->
+                            </div>
+                        </div>
+
+                        <!-- Required Action Buttons -->
+                        <div class="result-actions-wrapper">
+                            <a href="index.html" class="btn-outline">
+                                <i class="fas fa-shopping-bag"></i> Return to Shop
+                            </a>
+                            <button class="btn-primary" id="download-card-btn" onclick="downloadDiscountCard()" style="width: auto; margin-top: 0; display: none;">
+                                <i class="fas fa-download"></i> Download Your Discount Card
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Toast Notification Container -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- Quiz Logic Script -->
+    <script>
+        // 10 Advanced Questions about Animals in General (Wildlife, Marine, Birds, Reptiles, Mammals, Care)
+        const quizQuestions = [
+            {
+                question: "Which marine mammal is known to use tools such as sea stones to crack open shells and sea urchins?",
+                difficulty: "Medium",
+                options: ["Bottlenose Dolphin", "Sea Otter", "Harbor Seal", "Manatee"],
+                correct: 1
+            },
+            {
+                question: "What is the primary biological reason why migratory birds fly in a classic V-formation?",
+                difficulty: "Hard",
+                options: [
+                    "To communicate navigational coordinates via vocal chirps",
+                    "To conserve energy through aerodynamic upwash and reduce wind resistance",
+                    "To prevent predators from spotting individuals in the flock",
+                    "To maintain body warmth during high-altitude flight"
+                ],
+                correct: 1
+            },
+            {
+                question: "Which reptile species is famous for having the strongest bite force of any living reptile?",
+                difficulty: "Normal",
+                options: ["Saltwater Crocodile", "Komodo Dragon", "Green Anaconda", "Galápagos Tortoise"],
+                correct: 0
+            },
+            {
+                question: "What essential nutrient must be supplemented or synthesized via UVB lighting for captive reptiles to prevent metabolic bone disease?",
+                difficulty: "Hard",
+                options: ["Vitamin A", "Vitamin C", "Vitamin D3", "Vitamin K"],
+                correct: 2
+            },
+            {
+                question: "Which animal holds the record for the largest brain-to-body mass ratio and advanced problem-solving among invertebrates?",
+                difficulty: "Medium",
+                options: ["Jellyfish", "Octopus", "Humpback Whale", "Loggerhead Turtle"],
+                correct: 1
+            },
+            {
+                question: "What is the primary function of an elephant's large ears in hot savannah climates?",
+                difficulty: "Normal",
+                options: [
+                    "Detecting seismic vibrations through the ground",
+                    "Thermoregulation and heat dissipation through dense blood vessel networks",
+                    "Amplifying low-frequency vocalizations over miles",
+                    "Defending against predatory feline attacks"
+                ],
+                correct: 1
+            },
+            {
+                question: "Which bird species is renowned for its remarkable tool-making ability, crafting hooks out of twigs to extract grubs?",
+                difficulty: "Hard",
+                options: ["Bald Eagle", "New Caledonian Crow", "African Grey Parrot", "Peregrine Falcon"],
+                correct: 1
+            },
+            {
+                question: "In wildlife rehabilitation and rescue, what does 'imprinting' refer to?",
+                difficulty: "Medium",
+                options: [
+                    "A rapid, irreversible learning process during a critical early window where young animals bond with caregivers",
+                    "The natural molting process in birds of prey",
+                    "A temporary sedative used during veterinary surgery",
+                    "The GPS tracking tags placed on migrating sea turtles"
+                ],
+                correct: 0
+            },
+            {
+                question: "Which of the following wild animal groups is scientifically classified as a marsupial rather than a placental mammal?",
+                difficulty: "Easy",
+                options: ["Red Fox", "Koala", "African Lion", "Hedgehog"],
+                correct: 1
+            },
+            {
+                question: "Why is proper biosecurity and quarantine essential when introducing a newly rescued animal to a sanctuary?",
+                difficulty: "Normal",
+                options: [
+                    "To prevent the potential spread of infectious diseases and parasites to existing residents",
+                    "To ensure the animal learns human language faster",
+                    "To reduce feeding costs during the first week",
+                    "To alter their natural hunting instincts"
+                ],
+                correct: 0
+            }
+        ];
+
+        let userData = { name: "", email: "", phone: "" };
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let selectedOptionIndex = null;
+        let userAnswersHistory = [];
+
+        function startQuiz(e) {
+            e.preventDefault();
+            userData.name = document.getElementById('user-name').value.trim();
+            userData.email = document.getElementById('user-email').value.trim();
+            userData.phone = document.getElementById('user-phone').value.trim();
+
+            if (!userData.name || !userData.email || !userData.phone) {
+                showToast("Please fill in all your contact details to begin.");
+                return;
+            }
+
+            document.getElementById('step-registration').classList.remove('active');
+            document.getElementById('step-quiz').classList.add('active');
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            selectedOptionIndex = null;
+            document.getElementById('next-question-btn').style.display = 'none';
+
+            const q = quizQuestions[currentQuestionIndex];
+            document.getElementById('progress-indicator').textContent = `Question ${currentQuestionIndex + 1} of ${quizQuestions.length}`;
+            document.getElementById('difficulty-indicator').textContent = q.difficulty;
+            document.getElementById('question-text').textContent = q.question;
+
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = q.options.map((opt, idx) => `
+                <button class="option-btn" onclick="selectOption(${idx})">
+                    <span>${opt}</span>
+                    <i class="far fa-circle" id="opt-icon-${idx}"></i>
+                </button>
+            `).join('');
+        }
+
+        function selectOption(idx) {
+            selectedOptionIndex = idx;
+            const buttons = document.querySelectorAll('.option-btn');
+            buttons.forEach((btn, i) => {
+                const icon = document.getElementById(`opt-icon-${i}`);
+                if (i === idx) {
+                    btn.classList.add('selected');
+                    icon.className = 'fas fa-check-circle';
+                } else {
+                    btn.classList.remove('selected');
+                    icon.className = 'far fa-circle';
+                }
+            });
+
+            document.getElementById('next-question-btn').style.display = 'inline-flex';
+        }
+
+        function handleNextQuestion() {
+            if (selectedOptionIndex === null) return;
+
+            const currentQ = quizQuestions[currentQuestionIndex];
+            const isCorrect = selectedOptionIndex === currentQ.correct;
+
+            if (isCorrect) {
+                score++;
+            }
+
+            userAnswersHistory.push({
+                question: currentQ.question,
+                selected: currentQ.options[selectedOptionIndex],
+                correct: currentQ.options[currentQ.correct],
+                isCorrect: isCorrect
+            });
+
+            currentQuestionIndex++;
+
+            if (currentQuestionIndex < quizQuestions.length) {
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            document.getElementById('step-quiz').classList.remove('active');
+            document.getElementById('step-results').classList.add('active');
+
+            document.getElementById('final-score-text').textContent = `${score} / ${quizQuestions.length}`;
+
+            let commentary = "";
+            let discountPercent = 0;
+
+            if (score === 10) {
+                commentary = "Outstanding! You scored a perfect 10/10. You are a certified Animal Welfare Master!";
+                discountPercent = 10;
+            } else if (score === 9) {
+                commentary = "Fantastic job! You possess exceptional knowledge across diverse animal species.";
+                discountPercent = 7;
+            } else if (score === 8) {
+                commentary = "Great work! You scored 8 correct answers and successfully unlocked your discount.";
+                discountPercent = 5;
+            } else {
+                commentary = "Good effort! You need 8 or more correct answers to unlock our order discount card. Feel free to review your answers below and try again!";
+            }
+
+            document.getElementById('score-commentary').textContent = commentary;
+
+            // Render summary breakdown
+            const summaryContainer = document.getElementById('answers-summary-list');
+            summaryContainer.innerHTML = userAnswersHistory.map((item, idx) => `
+                <div class="answer-summary-item ${item.isCorrect ? 'correct-ans' : 'wrong-ans'}">
+                    <strong>Q${idx + 1}: ${item.question}</strong><br>
+                    <span>Your Answer: ${item.selected}</span><br>
+                    ${!item.isCorrect ? `<span style="color: #2E7D32;">Correct Answer: ${item.correct}</span>` : '<span style="color: #2E7D32;"><i class="fas fa-check"></i> Correct</span>'}
+                </div>
+            `).join('');
+
+            if (score >= 8) {
+                document.getElementById('card-name').textContent = userData.name;
+                document.getElementById('card-score').textContent = `${score} / 10 Correct`;
+                document.getElementById('card-email').textContent = userData.email;
+                document.getElementById('card-phone').textContent = userData.phone;
+                document.getElementById('card-discount-text').textContent = `${discountPercent}% OFF`;
+                
+                document.getElementById('reward-card-wrapper').style.display = 'block';
+                document.getElementById('download-card-btn').style.display = 'inline-flex';
+                showToast(`Congratulations! You unlocked a ${discountPercent}% discount!`);
+            } else {
+                document.getElementById('reward-card-wrapper').style.display = 'none';
+                document.getElementById('download-card-btn').style.display = 'none';
+            }
+        }
+
+        function downloadDiscountCard() {
+            const cardEl = document.getElementById('printable-reward-card');
+            html2canvas(cardEl, { scale: 2, backgroundColor: null }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = `TheLoveProject-DiscountCard-${userData.name.replace(/\s+/g, '_')}.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+                showToast("Reward card downloaded as Image successfully!");
+            });
+        }
+
+        function showToast(message) {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerHTML = `<i class="fas fa-heart" style="color: var(--deep-rose);"></i> <span>${message}</span>`;
+            container.appendChild(toast);
+            setTimeout(() => toast.remove(), 3500);
+        }
+    </script>
+</body>
+</html>
